@@ -56,3 +56,22 @@ bool dielectric::scatter(
     scattered = ray(rec.p, direction, r_in.time());
     return true;
 }
+
+color material::emitted(double u, double v, const point3 &p) const{
+    return color(0,0,0); //return white
+}
+
+
+//for the diffuse_light class
+diffuse_light::diffuse_light(shared_ptr<texture> a){
+    this->emit = a;
+}
+diffuse_light::diffuse_light(color c){
+    this->emit = make_shared<Solid_Color>(c);
+}
+bool diffuse_light::scatter(const ray &r_in, const hit_record &rec, color &attenuation, ray &scattered) const{
+    return false; //as the material only emits lights and does not reflect 
+}
+color diffuse_light::emitted(double u, double v, const point3 &p) const{
+    return this->emit->value(u,v,p);
+}

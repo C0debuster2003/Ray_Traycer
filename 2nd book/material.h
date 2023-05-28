@@ -9,6 +9,7 @@ struct hit_record;
 class material
 {
 public:
+    virtual color emitted(double u, double v, const point3 &p) const;
     virtual bool scatter(const ray &r_in, const hit_record &rec, color &attenuation, ray &scattered)
         const = 0;
 };
@@ -55,3 +56,17 @@ private:
     }
 };
 #endif
+
+// defining the light emitting material class
+class diffuse_light : public material
+{
+public:
+    // parametrized constructor
+    diffuse_light(shared_ptr<texture> a);
+    diffuse_light(color c);
+    virtual bool scatter(const ray &r_in, const hit_record &rec, color &attenuation, ray &scattered) const override;
+    virtual color emitted(double u, double v, const point3 &p) const override;
+
+public:
+    shared_ptr<texture> emit;
+};

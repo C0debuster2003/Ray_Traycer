@@ -1,5 +1,5 @@
-final.o: vec3.o Color.o Ray.o Camera.o hittable_list.o Perlin.o Texture.o Sphere.o Material.o MSphere.o AABB.o BVH.o img7.cpp
-	g++ vec3.o Color.o Ray.o Camera.o hittable_list.o Perlin.o Texture.o Sphere.o Material.o MSphere.o AABB.o BVH.o img7.cpp
+final.o: vec3.o Color.o Ray.o Camera.o hittable_list.o Perlin.o Texture.o Sphere.o Material.o MSphere.o AABB.o BVH.o AARect.o img8.cpp
+	g++ vec3.o Color.o Ray.o Camera.o hittable_list.o Perlin.o Texture.o Sphere.o Material.o MSphere.o AABB.o BVH.o AARect.o img8.cpp
 
 vec3.o: vec3.cpp
 	g++ -c vec3.cpp
@@ -36,6 +36,9 @@ BVH.o: BVH.cpp hittable_list.o
 
 AABB.o: AABB.cpp vec3.o Ray.o
 	g++ -c AABB.cpp
+
+AARect.o: AARect.cpp
+	g++ -c AARect.cpp
 
 clean:
 	del *.o
