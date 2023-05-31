@@ -30,7 +30,6 @@ Sphere.o: Sphere.cpp vec3.o Ray.o hittable.o
 
 Material.o: Material.cpp Texture.o hittable.o
 	g++ -c Material.cpp
-
 constant_medium.o: constant_medium.cpp hittable.o Material.o Texture.o
 	g++ -c constant_medium.cpp
 MSphere.o: MSphere.cpp hittable.o
